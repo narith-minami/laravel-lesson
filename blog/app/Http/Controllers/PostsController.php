@@ -25,4 +25,20 @@ class PostsController extends Controller
     public function create() {
       return view('posts.create');
     }
+
+    public function store(Request $request) {
+      $this->validate($request, [
+        'title'=>'required|min:3',
+        'body'=>'required'
+      ]);
+      $post = new Post();
+      $post->title = $request->title;
+      $post->body = $request->body;
+      $post->save();
+      return redirect('/');
+    }
+
+    public function edit(Post $post) {
+      return view('posts.edit', ['post'=>$post]);
+    }
 }
