@@ -7,18 +7,20 @@
   <a href="{{url('/posts/create')}}" class="header-menu">New Post</a>
   Blog Posts
 </h1>
-<ul>
+<div>
   @foreach ($posts as $post)
-  <li>
-    <a href="{{ action('PostsController@show', $post) }}">{{$post->title}}</a>
-    <a href="{{ action('PostsController@edit', $post) }}" class="edit">[Edit]</a>
-    <a href="#" class="del" data-id="{{ $post->id }}">[x]</a>
+  <div class="blog-item">
+    <p class="blog-created">{{$post->created_at}}</p>
+    <a class="blog-title" href="{{ action('PostsController@show', $post) }}">{{$post->title}}</a>
+    <div class="blog-body">{{$post->body}}</div>
+    <!-- <a href="{{ action('PostsController@edit', $post) }}" class="edit">[Edit]</a> -->
+    <!-- <a href="#" class="del" data-id="{{ $post->id }}">[x]</a>
     <form id="form_{{ $post->id }}" method="post" action="{{ url('/posts', $post->id) }}">
       {{ csrf_field() }}
       {{ method_field('delete') }}
-    </form>
-  </li>
+    </form> -->
+  </div>
   @endforeach
-</ul>
+</div>
 <script src="/js/main.js"></script>
 @endsection
