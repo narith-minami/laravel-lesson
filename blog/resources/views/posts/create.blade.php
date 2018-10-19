@@ -21,6 +21,11 @@
      <span class="error">{{ $errors->first('body') }}</span>
      @endif
    </p>
+   <p>
+     <input type="radio" name="category_id" value="1">日記
+     <input type="radio" name="category_id" value="2">プログラミング
+     <input type="radio" name="category_id" value="3">その他
+   </p>
    <p><input type="submit" value="Add"></p>
 </form>
 @endsection

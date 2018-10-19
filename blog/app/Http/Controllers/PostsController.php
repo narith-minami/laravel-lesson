@@ -27,10 +27,16 @@ class PostsController extends Controller
       return view('posts.create');
     }
 
+    public function filter($category) {
+      $posts = Post::latest()->where('category_id', $category)->get();
+      return view('posts.index', ['posts'=>$posts]);
+    }
+
     public function store(PostRequest $request) {
       $post = new Post();
       $post->title = $request->title;
       $post->body = $request->body;
+      $post->category_id = $request->category_id;
       $post->save();
       return redirect('/');
     }
