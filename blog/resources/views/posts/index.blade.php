@@ -8,13 +8,32 @@
   My Note
 </h1>
 <div>
-  <div "top-category">
-    <a class="home" href="{{ url('/') }}">ホーム</a>
+  <div class="top-category">
+    @if ($select_category === '0')
+    <a class="category-link selected" href="{{ url('/') }}">ホーム</a>
+    @else
+    <a class="category-link" href="{{ url('/') }}">ホーム</a>
+    @endif
+
+    @if ($select_category === '1')
+    <a class="category-link selected" href="{{ action('PostsController@filter', 1) }}">日記</a>
+    @else
     <a class="category-link" href="{{ action('PostsController@filter', 1) }}">日記</a>
+    @endif
+
+    @if ($select_category === '2')
+    <a class="category-link selected" href="{{ action('PostsController@filter', 2) }}">プログラミング</a>
+    @else
     <a class="category-link" href="{{ action('PostsController@filter', 2) }}">プログラミング</a>
+    @endif
+
+    @if ($select_category === '3')
+    <a class="category-link selected" href="{{ action('PostsController@filter', 3) }}">その他</a>
+    @else
     <a class="category-link" href="{{ action('PostsController@filter', 3) }}">その他</a>
+    @endif
   </div>
-  @foreach ($posts as $post)
+  @forelse  ($posts as $post)
   <div class="blog-item">
     @if ($post->category_id === '1')
     <p class="blog-category dairy">日記</p>
@@ -26,14 +45,13 @@
     <p class="blog-created">{{$post->created_at}}</p>
     <a class="blog-title" href="{{ action('PostsController@show', $post) }}">{{$post->title}}</a>
     <div class="blog-body">{!! nl2br(e($post->body)) !!}</div>
-    <!-- <a href="{{ action('PostsController@edit', $post) }}" class="edit">[Edit]</a> -->
-    <!-- <a href="#" class="del" data-id="{{ $post->id }}">[x]</a>
-    <form id="form_{{ $post->id }}" method="post" action="{{ url('/posts', $post->id) }}">
-      {{ csrf_field() }}
-      {{ method_field('delete') }}
-    </form> -->
+    <div class="blog-comment">
+      <p>コメント：{{ $post->comments->count()}}</p>
+    </div>
   </div>
-  @endforeach
+  @empty
+  <p>記事がありません</p>
+  @endforelse
 </div>
 <script src="/js/main.js"></script>
 @endsection

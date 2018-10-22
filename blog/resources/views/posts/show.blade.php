@@ -3,8 +3,20 @@
 @section('title', $post->title)
 
 @section('content')
-<h1><a href="{{url('/')}}" class="header-menu">Back</a>{{$post->title}}</h1>
+<h1>
+  <a href="{{url('/')}}" class="header-menu">Back</a>
+  {{$post->title}}
+</h1>
 <p>{!! nl2br(e($post->body)) !!}</p>
+
+<hr>
+
+<a href="{{ action('PostsController@edit', $post) }}" class="edit">[Edit]</a>
+<a href="#" class="del" data-id="{{ $post->id }}">[x]</a>
+<form id="form_{{ $post->id }}" method="post" action="{{ url('/posts', $post->id) }}">
+  {{ csrf_field() }}
+  {{ method_field('delete') }}
+</form>
 
 <h2>Comments</h2>
 <ul>

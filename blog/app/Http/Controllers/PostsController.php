@@ -11,7 +11,7 @@ class PostsController extends Controller
     public function index() {
       $posts = Post::latest()->get();
       // dd($post->toArray());
-      return view('posts.index', ['posts'=>$posts]);
+      return view('posts.index', ['posts'=>$posts, 'select_category'=>'0']);
     }
 
     // public function show($id) {
@@ -29,7 +29,7 @@ class PostsController extends Controller
 
     public function filter($category) {
       $posts = Post::latest()->where('category_id', $category)->get();
-      return view('posts.index', ['posts'=>$posts]);
+      return view('posts.index', ['posts'=>$posts, 'select_category'=>$category]);
     }
 
     public function store(PostRequest $request) {

@@ -15,6 +15,33 @@ h1 {
   border-bottom: 1px solid #ddd;
 }
 
+.top-category {
+  padding-bottom: 16px;
+}
+
+.category-link:hover {
+  border-bottom: 2px solid black;
+  color: black;
+}
+
+.category-link {
+  color: #ddd;
+}
+
+.category-link.selected {
+  border-bottom: 2px solid black;
+  color: black;
+}
+
+.blog-comment {
+  border-top: 1px solid #ddd;
+  width: 96%;
+}
+
+a {
+  text-decoration: none;
+}
+
 .blog-item {
   border: 1px solid #d3d3d3;
   border-radius: 3px;
@@ -48,6 +75,13 @@ input[type="text"], textarea {
 
 textarea {
   height: 120px;
+}
+
+.blog-category {
+  border: 1px solid #d3d3d3;
+  width: 120px;
+  border-radius: 15px;
+  text-align: center;
 }
 
 .error {
