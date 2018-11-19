@@ -33,25 +33,8 @@
     <a class="category-link" href="{{ action('PostsController@filter', 3) }}">その他</a>
     @endif
   </div>
-  @forelse  ($posts as $post)
-  <div class="blog-item">
-    @if ($post->category_id === '1')
-    <p class="blog-category dairy">日記</p>
-    @elseif ($post->category_id === '2')
-    <p class="blog-category programing">プログラミング</p>
-    @elseif ($post->category_id === '3')
-    <p class="blog-category other">その他</p>
-    @endif
-    <p class="blog-created">{{$post->created_at}}</p>
-    <a class="blog-title" href="{{ action('PostsController@show', $post) }}">{{$post->title}}</a>
-    <div class="blog-body">{!! nl2br(e($post->body)) !!}</div>
-    <div class="blog-comment">
-      <p>コメント：{{ $post->comments->count()}}</p>
-    </div>
-  </div>
-  @empty
-  <p>記事がありません</p>
-  @endforelse
+
+  <blog-list v-bind:posts="{{ $posts }}"></blog-list>
 </div>
 <script src="/js/main.js"></script>
 @endsection

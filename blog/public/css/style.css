@@ -59,6 +59,7 @@ a {
 .blog-body {
   margin-top: 16px;
   margin-bottom: 16px;
+  white-space: pre-wrap;
 }
 
 .header-menu {

@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
-      <div class="contatiner">
+      <div id="app" class="contatiner">
          @yield('content')
       </div>
+      <script src=" {{ mix('js/app.js') }} "></script>
     </body>
 </html>
