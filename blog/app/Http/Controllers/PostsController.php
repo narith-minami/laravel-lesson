@@ -29,7 +29,7 @@ class PostsController extends Controller
 
     public function filter($category) {
       $posts = Post::latest()->where('category_id', $category)->get();
-      return view('posts.index', ['posts'=>$posts, 'select_category'=>$category]);
+      return view('posts.index', ['posts'=>$posts, 'select_category'=>intval($category)]);
     }
 
     public function store(PostRequest $request) {
